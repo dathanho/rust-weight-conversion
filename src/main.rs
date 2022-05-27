@@ -7,34 +7,81 @@ fn main() {
     // Getting input for unit (from)
     println!("What unit do you want to convert from?");
 
-    let mut unit_from = String::new();
+    let unit_from: String = loop {
+        let mut unit = String::new();
 
-    io::stdin()
-        .read_line(&mut unit_from)
-        .expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut unit)
+            .expect("Failed to read line");
 
+        if unit.trim().to_lowercase() == "milligrams" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "grams" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "kilograms" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "ounces" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "pounds" {
+            break unit;
+        } else {
+            println!("Please input a supported unit.");
+            continue;
+        }
+    };
     // Getting input for unit (to)
-    println!("What unit do you want to convert to");
+    println!("What unit do you want to convert to?");
 
-    let mut unit_to = String::new();
+    let unit_to: String = loop {
+        let mut unit = String::new();
 
-    io::stdin()
-        .read_line(&mut unit_to)
-        .expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut unit)
+            .expect("Failed to read line");
 
+        if unit.trim().to_lowercase() == "milligrams" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "grams" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "kilograms" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "ounces" {
+            break unit;
+        }
+        if unit.trim().to_lowercase() == "pounds" {
+            break unit;
+        } else {
+            println!("Please input a supported unit.");
+            continue;
+        };
+    };
     // Getting amount
     println!(
         "Enter the amount of {} you want to convert.",
         unit_from.trim().to_lowercase()
     );
 
-    let mut input_amount = String::new();
+    let input_amount: f64 = loop {
+        println!("Input a number.");
+        let mut amount = String::new();
 
-    io::stdin()
-        .read_line(&mut input_amount)
-        .expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut amount)
+            .expect("Failed to read line");
 
-    let input_amount: f64 = input_amount.trim().parse().unwrap();
+        let amount: f64 = match amount.trim().parse() {
+            Ok(amount) => amount,
+            Err(_) => continue,
+        };
+        break amount;
+    };
 
     // Units conversion
     let milligrams = 0.001;
